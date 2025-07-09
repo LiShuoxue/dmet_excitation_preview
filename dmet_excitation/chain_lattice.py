@@ -1,7 +1,3 @@
-"""
-chain_lattice.py
-"""
-
 import sys, os
 import numpy as np
 from scipy import linalg as la

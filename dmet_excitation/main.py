@@ -38,7 +38,7 @@ SITE_OPS_SCHEME_INFO = {
         }
 
 
-# DMET Functions
+# Section 1: Ground-state DMET calculation
 
 def get_bath(rdm1, imp_idx):
     imp_idx = np.asarray(imp_idx, dtype=int)
@@ -99,6 +99,7 @@ def get_ham_dmet(hcore_lo, veff_lo, h2_emb, rdm1_emb, imp_idx, C_lo_eo):
     return (h1_scaled, h2_scaled)
 
 
+# Section 2: Excitation operators, local excitation bases and effective Hamiltonian
 class Operator_tuple(tuple):
     """Save the information of site operators"""
 
@@ -679,6 +680,8 @@ def run_local_excitation_per_task(mydmet, imp_id:int, task:Iterable, opname:str,
     )
     return cd
 
+
+# Section 3: Collect the effective Hamiltonian and solve the eigenvalue problem
 
 def collect_data_per_task(scratch_cd, task, **kwargs):
 

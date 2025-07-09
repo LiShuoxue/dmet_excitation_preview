@@ -2,6 +2,11 @@
 
 The demo of code that of the project "Towards Excitations and Dynamical Quantities in Correlated Lattices with Density Matrix Embedding Theory".
 
+We show the fundamental framework of the implementation: 
+
+- The preparation of the impurity problems for chain lattice (`chain_lattice.py`)
+- Ground-state DMET, generation of excitation operators, local excitation bases, effective Hamiltonian and the calculation of the excitation energies (`main.py`)
+
 Please see `./example/notebook.ipynb` for the usage for the example of 1D Hubbard model.
 
 ## Prerequisites
