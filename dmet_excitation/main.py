@@ -649,6 +649,7 @@ def run_local_excitation_per_task(mydmet, imp_id:int, task:Iterable, opname:str,
             raise NotImplementedError('Unknown task type!')
 
     if opname == 'H':       # Hamiltonian matrix
+        # Here is the effective Hamiltonian defined in Eq. (A10) of the manuscript
         ham = get_ham_dmet(hcore_lo, veff_lo, h2_emb, rdm1_emb, impidx_in_emb, C_lo_eo)
 
     elif opname == 'S':     # Overlap matrix
@@ -673,6 +674,7 @@ def run_local_excitation_per_task(mydmet, imp_id:int, task:Iterable, opname:str,
     tss_bra = LocalExcitationBases(verbose=verbose, stdout=sys.stdout, **bra_kwargs)
     tss_ket = LocalExcitationBases(verbose=verbose, stdout=sys.stdout, **ket_kwargs)
 
+    # NOTE : get_contract_data returns a part of effective Hamiltonian (see Eq. (A9))
     cd = get_contract_data(
         tag_cd=tag_cd, op_name=opname, op=ham,
         tss_bra=tss_bra, tss_ket=tss_ket,
@@ -737,7 +739,8 @@ def _search_data(latt, eominfos, symmap_key):
 
 def get_op_blocks(latt, eominfos, opname, normalized=True):
     """
-    From the eominfos ready to export observables, get the Hamiltonian/operator matrix for each independent block.
+    From the eominfos ready to export observables, sum over democratic-partitioning index to get the Hamiltonian/operator matrix.
+    (Eq. (A2) or (A3) in manuscript)
     """
     op_dict = dict()
 
