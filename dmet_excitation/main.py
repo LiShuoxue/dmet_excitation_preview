@@ -173,6 +173,7 @@ def op_sz_to_fci(op_tuple:Operator_tuple, site_idxs:Iterable,
                  civec:np.ndarray, norb:int, nelec:int) -> np.ndarray:
     """
     for a FCI vector, apply the excitation operator and get the new FCI vector
+    Eq. (2) and real-space version of Eq. (8) in manuscript.
     """
     op_dict = {
         "c": fci.addons.cre_a,
@@ -563,6 +564,10 @@ def get_contract_data(tag_cd:str, op_name:str, op:tuple,
                       restart=True, calc_eom=True,
                       norm_bra_given=None, norm_ket_given=None,
                       ):
+    """
+    Get the effective Hamiltonian for a democratic-partitioning index.
+    Correspondent to Eq. (6) of the manuscript if calc_eom = True.
+    """
     scratch_cd = tss_ket.scratch_cd
 
     if scratch_cd[-1] == '/':
